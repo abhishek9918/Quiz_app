@@ -416,10 +416,7 @@
             </thead>
             <tbody>
               @for (item of filteredData(); track item; let index = $index) {
-              <tr
-                *ngFor="let item of filteredData(); let index = index"
-                [ngClass]="{ 'bg-gray-50': index % 2 === 0 }"
-              >
+              <tr [ngClass]="{ 'bg-gray-50': index % 2 === 0 }">
                 <th
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left text-sm text-gray-600 font-normal"
                 >

@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   items: any[] = [];
   allItems: any[] = [];
   currentPage: number = 0;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 15;
   loading: boolean = false;
   loadingMore: boolean = false;
   errorMessage: string = '';
