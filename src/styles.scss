@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities; /* You can add global styles to this file, and also import other style files */
+
+// tbody {
+//   display: block;
+//   height: 250px;
+//   overflow: auto;
+//   scrollbar-width: 3px;
+// }
+// thead,
+// tbody tr {
+//   display: table;
+//   width: 100%;
+//   table-layout: fixed;
+// }
+// thead {
+//   width: calc(100%);
+// }
+// table {
+//   width: 400px;
+// }
+// ::-webkit-scrollbar {
+//   width: 4px;
+//   height: 5px;
+// }
+// ::-webkit-scrollbar-thumb {
+//   background-color: #8a8a8a;
+//   border-radius: 100px;
+//   opacity: 0.5;
+// }
+// ::-webkit-scrollbar-track {
+//   background-color: white;
+//   border-radius: 100px;
+//   opacity: 0;
+// }
+/* CSS for truncating long text with ellipsis */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px; /* Adjust this width as needed */
+}
+
+/* Ensure the table can scroll horizontally */
+table {
+  table-layout: auto; /* Allows automatic width adjustment */
+}
+
+.w-full {
+  overflow-x: auto; /* Enables horizontal scrolling for the table */
+}
