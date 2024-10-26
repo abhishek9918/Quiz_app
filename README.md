@@ -1,27 +1,32 @@
-# Task
+# Electric Vehicle Population Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+## Project Overview
 
-## Development server
+The Electric Vehicle Population Dashboard is a dynamic web application built using Angular. It visualizes key insights from the Electric Vehicle (EV) population dataset through various charts and graphs. The dashboard provides an intuitive interface for users to explore the data, filter information, and gain insights into EV registrations by manufacturer, type, and year.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- Interactive charts displaying EV counts by manufacturer and type.
+- Filter options for data exploration based on model year, state, and electric vehicle type.
+- Infinite scroll implementation for loading data seamlessly.
+- User-friendly design and layout for enhanced user experience.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+- Angular
+- TypeScript
+- ng-apexcharts
+- Tailwind CSS
+- ng-multiselect-dropdown
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Data Source
 
-## Running unit tests
+The data is sourced from a CSV file located in the assets directory.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+Clone the repository and navigate to the project directory. Install the dependencies using:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm install
+```
