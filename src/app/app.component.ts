@@ -9,6 +9,8 @@ import {
   NgApexchartsModule,
 } from 'ng-apexcharts';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { QuestionComponent } from './Quiz/question/question.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -19,7 +21,13 @@ export type ChartOptions = {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgApexchartsModule, SidebarComponent],
+  imports: [
+    RouterOutlet,
+    NgApexchartsModule,
+    SidebarComponent,
+    HttpClientModule,
+    QuestionComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -27,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('chart') chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
   title = 'task';
-  constructor() {
+  constructor(private http: HttpClient) {
     this.chartOptions = {
       series: [
         {
