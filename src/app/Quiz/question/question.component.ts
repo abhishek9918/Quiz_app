@@ -17,21 +17,20 @@ export class QuestionComponent implements OnInit {
   timerSubs!: Subscription;
   optionClicked: boolean = false;
   progress: number = 100;
+  Set = 'ONE';
   ngOnInit(): void {
-    this.getAllQuestion();
+    this.getAllQuestion(this.Set);
   }
-
-  getAllQuestion() {
-    const url =
-      'https://opentdb.com/api.php?amount=20&category=21&type=multiple';
+  UrlOne = 'https://opentdb.com/api.php?amount=20&category=21&type=multiple';
+  UrlTwo =
+    'https://opentdb.com/api.php?amount=20&category=18&difficulty=medium&type=multiple';
+  getAllQuestion(Set: String) {
+    const url = Set === 'ONE' ? this.UrlOne : this.UrlTwo;
     this.http.get<any>(url).subscribe((response) => {
       this.questionArray = response.results;
-
       this.questionArray = this.questionArray.map((ques: any) => {
         const allOptions = [...ques.incorrect_answers, ques.correct_answer];
-
         this.shuffleOptions(allOptions);
-
         return {
           question: ques.question,
           options: allOptions,
@@ -47,6 +46,12 @@ export class QuestionComponent implements OnInit {
     };
   }
 
+  getNewQuestion() {}
+
+  trackById(index: number, item: any): any {
+    return item.id;
+  }
+
   shuffleOptions(options: any[]) {
     for (let i = options.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -57,6 +62,7 @@ export class QuestionComponent implements OnInit {
 
   displayQuestion(): any {
     const currentQues = this.questionArray[this.currentIndex];
+    console.log(currentQues, 'currrentQues');
     return currentQues;
   }
 
@@ -78,8 +84,10 @@ export class QuestionComponent implements OnInit {
   marks: any = 0;
 
   verifyOption(selectedOption: any, selectedIndex: number) {
-    this.optionIndex = '';
+    console.log('click--Index');
+    this.optionIndex = null;
     this.optionIndex = selectedIndex;
+    console.log(this.optionIndex);
 
     const correctAnswer = this.displayQuestion().correct_answer;
 
@@ -108,33 +116,47 @@ export class QuestionComponent implements OnInit {
       let sc = 100 / this.questionArray.length;
       this.marks += sc;
       if (this.currentIndex == 20) score.textContent = this.marks;
+      console.log(this.marks, 'makrs');
     }
   }
   count = 15;
+
   getTimerInterVal() {
     const timer = interval(1000);
-    this.timerSubs = timer.subscribe((e) => {
-      this.count--;
-      this.progress = (this.count / 15) * 100;
-      if (this.count === 0) {
+    this.timerSubs = timer.subscribe(() => {
+      if (this.count > 0) {
+        this.count--;
+        this.progress = Math.trunc((this.count / 15) * 100);
+      } else {
         this.timerSubs.unsubscribe();
-        this.count = 0;
         this.nextQuestion();
+        this.optionClicked = false;
       }
     });
   }
+  ngOnDestroy() {
+    if (this.timerSubs) {
+      this.timerSubs.unsubscribe();
+    }
+  }
 
-  showModal: boolean = false; // Control modal visibility
-  // marks: number = 0;
-
-  // Call this function at the end of the quiz to show the modal
+  showModal: boolean = false;
   showResult() {
     this.showModal = true;
   }
-
-  // Close the modal
   closeModal() {
     this.showModal = false;
+  }
+  newSet(set: String) {
+    this.showModal = false;
+    this.currentIndex = 0;
+    this.progress = 100;
+    this.count = 15;
+    this.optionIndex = null;
+    this.marks = 0;
+    this.optionClicked = false;
+
+    this.getAllQuestion(set);
   }
 }
 

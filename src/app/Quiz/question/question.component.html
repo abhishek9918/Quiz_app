@@ -1,11 +1,16 @@
 <div class="quiz-container">
   <header class="quiz-header">
     <h1 class="quiz-title">Ultimate Sports Quiz</h1>
-    <div class="score-timer">
+    <div class="score-timer flex items-center gap-4">
       <span class="timer"
         >Time Left: <span id="timerCount">{{ this.count }}</span
         >s
       </span>
+      <!-- <span
+        class="score bg-green-100 text-green-800 py-1 px-3 rounded-full text-sm font-semibold dark:bg-green-900 dark:text-green-300"
+      >
+        Score: {{ marks }}
+      </span> -->
     </div>
   </header>
 
@@ -13,7 +18,7 @@
     <div
       class="bg-red-800 h-2.5 transit"
       [style.width]="progress + '%'"
-      style="transition: width 1s ease-in-out"
+      style="transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1)"
     ></div>
   </div>
   <section class="question-section">
@@ -40,7 +45,6 @@
 
   <footer class="quiz-footer">
     @if (optionClicked) {
-
     <button class="next-btn" (click)="nextQuestion()">Next Question</button>
     }
     <p class="progress">
@@ -50,12 +54,35 @@
   </footer>
 </div>
 
-<!-- Modal Background -->
-<div *ngIf="showModal" class="modal-overlay">
-  <!-- Modal Content -->
-  <div class="modal-content">
-    <h2 class="modal-title">Quiz Completed!</h2>
-    <p class="modal-message">Your Score: {{ marks }} / 100</p>
-    <button class="close-btn" (click)="closeModal()">Close</button>
+<div
+  *ngIf="showModal"
+  class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+>
+  <div
+    class="modal-content bg-white rounded-lg shadow-lg p-6 text-center dark:bg-gray-800"
+  >
+    <h2 class="modal-title text-2xl font-bold text-gray-800 dark:text-gray-100">
+      Quiz Completed!
+    </h2>
+    <p class="modal-message text-lg text-gray-600 mt-4 dark:text-gray-300">
+      Your Score: <span class="font-bold text-green-600">{{ marks }}</span> /
+      100
+    </p>
+    <div class="mt-6 space-x-4">
+      <button
+        class="close-btn bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition-all duration-200 dark:bg-red-800 dark:hover:bg-red-900"
+        (click)="closeModal()"
+      >
+        Close
+      </button>
+      <button
+        class="text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5"
+        (click)="newSet('TWO')"
+      >
+        New Set
+      </button>
+    </div>
   </div>
 </div>
+
+<!-- class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Green</button> -->

@@ -4,7 +4,10 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { DatePipe } from '@angular/common';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
