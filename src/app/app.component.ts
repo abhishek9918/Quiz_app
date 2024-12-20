@@ -10,7 +10,9 @@ import {
 } from 'ng-apexcharts';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { QuestionComponent } from './Quiz/question/question.component';
+// import { QuestionComponent } from './question-start/question/question.component';
+import { FinalQuizDashboardComponent } from './final-quiz-dashboard/final-quiz-dashboard.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -22,11 +24,11 @@ export type ChartOptions = {
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
+    // RouterOutlet,
     NgApexchartsModule,
-    SidebarComponent,
+    // SidebarComponent,
     HttpClientModule,
-    QuestionComponent,
+    MainLayoutComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

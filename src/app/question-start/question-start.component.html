@@ -1,0 +1,49 @@
+<div
+  class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-white"
+>
+  <div
+    class="w-full max-w-3xl bg-white text-gray-800 shadow-2xl rounded-xl p-10"
+  >
+    <!-- Header Section -->
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-4 text-indigo-600">
+        Welcome to the Quiz
+      </h1>
+      <p class="text-lg text-gray-600">
+        Please review the rules and guidelines before starting.
+      </p>
+    </div>
+
+    <!-- Rules Section -->
+    <div class="mt-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+        Rules & Guidelines
+      </h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-600">
+        <li>Read all questions carefully before answering.</li>
+        <li>You cannot go back to a question once answered.</li>
+        <li>Each question has a time limit of 1 minute.</li>
+        <li>Attempt all questions to maximize your score.</li>
+        <li>
+          Correct answers earn 1 point; incorrect answers have no negative
+          marks.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="mt-10 flex justify-between items-center">
+      <button
+        class="px-6 py-3 bg-red-500 text-white font-bold rounded-lg shadow-md hover:bg-red-600 transition-all"
+      >
+        Cancel
+      </button>
+      <button
+        (click)="startQuiz()"
+        class="px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 transition-all"
+      >
+        Let's Start
+      </button>
+    </div>
+  </div>
+</div>

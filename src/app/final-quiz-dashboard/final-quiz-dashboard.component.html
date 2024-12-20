@@ -1,0 +1,128 @@
+<div
+  class="flex flex-col items-center justify-center h-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500"
+>
+  <div
+    class="w-full max-w-3xl bg-white shadow-2xl rounded-xl p-4 transform transition-all"
+  >
+    <div class="text-center border-b pb-6 mb-6">
+      <h2 class="text-3xl font-black text-gray-900">Your Quiz Results</h2>
+      <p class="text-lg text-gray-500 mt-2">A breakdown of your performance.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        class="flex flex-col items-center bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg p-3 shadow-lg"
+      >
+        <p class="text-base font-medium">Total Questions</p>
+        <p class="text-4xl font-extrabold mt-2">{{ data.totalQuestions }}</p>
+      </div>
+
+      <div
+        class="flex flex-col items-center bg-gradient-to-r from-green-400 to-green-600 text-white rounded-lg p-3 shadow-lg"
+      >
+        <p class="text-base font-medium">Attempted Questions</p>
+        <p class="text-4xl font-extrabold mt-2">
+          {{ data.attemptedQuestions }}
+        </p>
+      </div>
+
+      <div
+        class="flex flex-col items-center bg-gradient-to-r from-yellow-400 to-yellow-600 text-white rounded-lg p-3 shadow-lg"
+      >
+        <p class="text-base font-medium">Unattempted Questions</p>
+        <p class="text-4xl font-extrabold mt-2">
+          {{ data.unattemptedQuestions }}
+        </p>
+      </div>
+
+      <div
+        class="flex flex-col items-center bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg p-3 shadow-lg"
+      >
+        <p class="text-base font-medium">Correct Answers</p>
+        <p class="text-4xl font-extrabold mt-2">{{ data.correctAnswers }}</p>
+      </div>
+
+      <div
+        class="flex flex-col items-center bg-gradient-to-r from-red-500 to-red-700 text-white rounded-lg p-3 shadow-lg"
+      >
+        <p class="text-base font-medium">Incorrect Answers</p>
+        <p class="text-4xl font-extrabold mt-2">{{ data.incorrectAnswers }}</p>
+      </div>
+    </div>
+    <!-- <div class="mt-10">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold text-gray-900">Performance Overview</h3>
+        <p class="text-gray-600 text-base mt-2">
+          A quick glance at your accuracy level.
+        </p>
+      </div>
+      <div
+        class="relative w-full bg-gray-200 h-6 rounded-full mt-6 overflow-hidden shadow-lg"
+      >
+        <div
+          class="absolute top-0 left-0 h-full bg-gradient-to-r from-green-500 to-green-700 transition-all ease-in-out duration-500"
+          [style.width]="
+            (data.correctAnswers / data.totalQuestions) * 100 + '%'
+          "
+        ></div>
+      </div>
+      <p class="text-center text-xl font-semibold text-gray-800 mt-4">
+        {{
+          (data.correctAnswers / data.totalQuestions) * 100 | number : "1.0-2"
+        }}% Accurate
+      </p>
+    </div> -->
+    <div class="mt-10">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold text-gray-900">Performance Overview</h3>
+        <p class="text-gray-600 text-base mt-2">
+          A quick glance at your accuracy level.
+        </p>
+      </div>
+      <!-- Progress Bar -->
+      <div
+        class="relative w-full bg-gray-200 h-6 rounded-full mt-6 overflow-hidden shadow-lg"
+      >
+        <div
+          class="absolute top-0 left-0 h-full bg-gradient-to-r from-green-500 to-green-700 transition-all ease-in-out duration-500"
+          [style.width]="
+            (data.correctAnswers / data.totalQuestions) * 100 + '%'
+          "
+        ></div>
+      </div>
+      <!-- Accuracy Percentage -->
+      <p class="text-center text-xl font-semibold text-gray-800 mt-4">
+        {{
+          (data.correctAnswers / data.totalQuestions) * 100 | number : "1.0-2"
+        }}% Accurate
+      </p>
+      <!-- Performance Assessment -->
+      <p
+        class="text-center text-lg font-bold mt-4"
+        [ngClass]="{
+          'text-green-600': performance === 'Excellent',
+          'text-yellow-500': performance === 'Moderate',
+          'text-red-600': performance === 'Poor'
+        }"
+      >
+        {{ performance }} Performance
+      </p>
+    </div>
+
+    <div class="mt-12 flex flex-col sm:flex-row gap-6">
+      <button
+        (click)="reTakeQuiz()"
+        class="flex-1 px-6 py-4 bg-gradient-to-r from-pink-500 to-red-600 text-white text-lg font-bold rounded-lg shadow-xl hover:shadow-2xl hover:from-pink-600 hover:to-red-700 transform hover:scale-105 transition-all"
+      >
+        Retake Quiz
+      </button>
+
+      <button
+        (click)="nextSet()"
+        class="flex-1 px-6 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-lg font-bold rounded-lg shadow-xl hover:shadow-2xl hover:from-indigo-600 hover:to-purple-700 transform hover:scale-105 transition-all"
+      >
+        Next Quiz
+      </button>
+    </div>
+  </div>
+</div>
