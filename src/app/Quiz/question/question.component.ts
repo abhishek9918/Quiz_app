@@ -145,7 +145,7 @@ export class QuestionComponent implements OnInit {
   count = 20;
 
   getTimerInterVal() {
-    const timer = interval(1);
+    const timer = interval(1000);
     this.timerSubs = timer.subscribe(() => {
       if (this.count > 0) {
         this.count--;
