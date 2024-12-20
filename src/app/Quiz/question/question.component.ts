@@ -89,10 +89,33 @@ export class QuestionComponent implements OnInit {
       this.currentIndex++;
       this.displayQuestion();
       this.getTimerInterVal();
-    } else if (this.currentIndex == this.questionArray.length - 1) {
+    } else if (
+      this.currentIndex == this.questionArray.length - 1 &&
+      this.optionClicked
+    ) {
       this.showModal = true;
     }
   }
+
+  getTimerInterVal() {
+    const timer = interval(1000);
+    this.timerSubs = timer.subscribe(() => {
+      if (this.count > 0) {
+        this.count--;
+        this.progress = Math.trunc((this.count / 20) * 100);
+      } else {
+        this.timerSubs.unsubscribe();
+        this.nextQuestion();
+        this.optionClicked = false;
+      }
+    });
+  }
+  ngOnDestroy() {
+    if (this.timerSubs) {
+      this.timerSubs.unsubscribe();
+    }
+  }
+
   isClicked = false;
   optionIndex: any = null;
   marks: any = 0;
@@ -111,15 +134,12 @@ export class QuestionComponent implements OnInit {
 
     const formattedSelectedOption = selectedOption.toString();
 
-    // Check if the answer is correct
     const isCorrect =
       formattedSelectedOption.trim().toLowerCase() ===
       formattedCorrectAnswer.trim().toLowerCase();
 
-    // Mark the question as attempted
     currentQuestion.isAttempted = true;
 
-    // Store the result for this question
     currentQuestion.isCorrect = isCorrect;
 
     if (
@@ -144,25 +164,6 @@ export class QuestionComponent implements OnInit {
   }
   count = 20;
 
-  getTimerInterVal() {
-    const timer = interval(1000);
-    this.timerSubs = timer.subscribe(() => {
-      if (this.count > 0) {
-        this.count--;
-        this.progress = Math.trunc((this.count / 20) * 100);
-      } else {
-        this.timerSubs.unsubscribe();
-        this.nextQuestion();
-        this.optionClicked = false;
-      }
-    });
-  }
-  ngOnDestroy() {
-    if (this.timerSubs) {
-      this.timerSubs.unsubscribe();
-    }
-  }
-
   showModal: boolean = false;
   showResult() {
     this.showModal = true;
@@ -183,16 +184,6 @@ export class QuestionComponent implements OnInit {
   }
 
   submitQuiz() {
-    // const results = {
-    //   totalQuestions: this.questionArray.length,
-    //   attemptedQuestions: this.questionArray.filter(
-    //     (q) => q.userAnswer !== null
-    //   ).length,
-    //   correctAnswers: this.marks,
-    //   incorrectAnswers: this.questionArray.length - this.marks,
-    // };
-    //
-
     const totalQuestions = this.questionArray.length;
     const attemptedQuestions = this.questionArray.filter(
       (q) => q.isAttempted
@@ -202,7 +193,7 @@ export class QuestionComponent implements OnInit {
     const Set = this.setNumber;
 
     const incorrectAnswers = attemptedQuestions - correctAnswers;
-    console.log(this.setNumber, 'number');
+
     const results = {
       totalQuestions,
       attemptedQuestions,

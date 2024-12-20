@@ -40,12 +40,15 @@
 
   <footer class="quiz-footer">
     @if (optionClicked) {
-    <button class="next-btn" (click)="nextQuestion()">
-      {{
-        questionArray.length - currentIndex == 1 ? "Submit" : "Next Question"
-      }}
-    </button>
-    <button class="btn btn-danger" (click)="submitQuiz()">Submit Quiz</button>
+    <div class="footer-content">
+      <button class="btn btn-danger" (click)="nextQuestion()">
+        {{
+          questionArray.length - currentIndex == 1
+            ? "Submit Quiz"
+            : "Next Question"
+        }}
+      </button>
+    </div>
     }
     <p class="progress">
       Question {{ currentIndex + 1 }} of
@@ -69,7 +72,7 @@
       <button class="btn btn-primary" (click)="submitQuiz()">
         Yes, Submit
       </button>
-      <button class="btn btn-danger" (click)="closeModal()">No, Go Back</button>
+      <!-- <button class="btn btn-danger" (click)="closeModal()">No, Go Back</button> -->
     </div>
   </div>
 </div>

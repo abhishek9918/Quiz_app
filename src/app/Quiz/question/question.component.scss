@@ -85,13 +85,22 @@
   padding: 1.5rem;
   background-color: #f1f1f1;
   text-align: center;
+  gap: 8;
+}
+
+.footer-content {
+  display: flex;
+  // flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center the content horizontally */
+  justify-content: center; /* Center the content vertically */
+  gap: 16px; /* Adjust spacing between elements */
 }
 
 .next-btn {
   background-color: #007bff;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
